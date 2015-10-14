@@ -18,7 +18,7 @@ public class CodeFighter_HappyNumber {
      */
     public static void main(String[] args) {
 //        // TODO code application logic here'
-        int[] test = HappyNumbers(10000000);
+        int[] test = HappyNumbers(10000);
         for (int i = 0; i < test.length; i++) {
             System.out.println(test[i]);
         }
@@ -87,3 +87,28 @@ public class CodeFighter_HappyNumber {
         }
     }
 }
+/*
+Find All Happy Numbers in the Given Range
+
+A happy number is a number defined by the following process:
+Given a positive integer, replace it by the sum of the squares of its digits, and repeat the process until the number either equals 1 (it will not change any further), or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers, while those that do not end in 1 are unhappy numbers (or sad numbers).
+
+Find all happy numbers in the given range [1..Range], inclusive.
+
+Example
+
+70 -> 72 + 0 = 49
+49 -> 42 + 92 = 16 + 81 = 97
+97 -> 92 + 72 = 81 + 49 = 130
+130 -> 12 + 32 + 0 = 1 + 9 = 10
+10 -> 12 + 0 = 1
+
+Hence 70 is a happy number.
+
+[input] integer Range
+
+Range ≤ 2000.
+[output] array.integer
+
+Happy numbers from the given range, returned in ascending order.
+ */
