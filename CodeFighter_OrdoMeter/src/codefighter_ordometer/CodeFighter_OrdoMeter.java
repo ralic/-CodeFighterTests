@@ -16,11 +16,23 @@ public class CodeFighter_OrdoMeter {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        long b = System.currentTimeMillis();
 //        int ran = (int) (Math.random() * 999999999);
-        int ran = 999999999;
-//        System.out.println("FaultyOdometer2 -in : " + ran + " -out : " + FaultyOdometer2(ran));
+        int ran = 999999;
+
+        long c = System.currentTimeMillis();
         System.out.println("FaultyOdometer3 -in : " + ran + " -out : " + FaultyOdometer1(ran));
+        System.out.println("Time spent :" + (System.currentTimeMillis() - c));
+
+        long b = System.currentTimeMillis();
+        System.out.println("FaultyOdometer2 -in : " + ran + " -out : " + FaultyOdometer2(ran));
+        System.out.println("Time spent :" + (System.currentTimeMillis() - b));
+
+    }
+
+    // AWESOME ALOGORITHM O(log(n))
+    public static int FaultyOdometer1(int n) {
+        // System.out.println(n + " " + (n % 10 - (n % 10 > 4 ? 1 : 0))); // To understand code.
+        return n < 1 ? 0 : 9 * FaultyOdometer1(n / 10) + n % 10 - (n % 10 > 4 ? 1 : 0);
     }
 
     // BRUTE-FORCE ALGORITHM O(n)
@@ -46,12 +58,8 @@ public class CodeFighter_OrdoMeter {
         return n - delta;
     }
 
-    // AWESOME ALOGORITHM O(log(n))
-    public static int FaultyOdometer1(int n) {
-        return n < 1 ? 0 : 9 * FaultyOdometer1(n / 10) + n % 10 - (n % 10 > 4 ? 1 : 0);
-    }
-
 }
+
 /*
 You are given a car odometer which displays the miles traveled as an integer.
 The odometer has a defect, however: it proceeds from digit 3 to digit 5 always

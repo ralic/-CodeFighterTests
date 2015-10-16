@@ -66,14 +66,44 @@ public class CodeFighter_SuperCup {
             "llzamalekalahly",
             "llyzamalekalahly",
             "lyzamalekalahly",};
-        for (int i = 0; i < s.length; i++) {
-            System.out.println("SuperCup result of " + s[i] + "-->" + i + " :" + SuperCup(s[i]));
-//            System.out.println("SuperCup2 result of " + s[i] + "-->" + i + " :" + SuperCup2(s[i]));
-        }
-    }
-    // SIMPLFILED && SUBMITED
 
+        long b = System.currentTimeMillis();
+        for (int i = 0; i < s.length; i++) {
+            SuperCup(s[i]);
+//            System.out.println("SuperCup result of " + s[i] + "-->" + i + " :" + SuperCup(s[i]));
+        }
+        System.out.println("Time Spent:" + (System.currentTimeMillis() - b));
+
+        long c = System.currentTimeMillis();
+        for (int i = 0; i < s.length; i++) {
+            SuperCup2(s[i]);
+//            System.out.println("SuperCup2 result of " + s[i] + "-->" + i + " :" + SuperCup2(s[i]));
+
+        }
+        System.out.println("Time Spent:" + (System.currentTimeMillis() - c));
+
+        long d = System.currentTimeMillis();
+        for (int i = 0; i < s.length; i++) {
+            SuperCup3(s[i]);
+//            System.out.println("SuperCup3 result of " + s[i] + "-->" + i + " :" + SuperCup3(s[i]));
+        }
+        System.out.println("Time Spent:" + (System.currentTimeMillis() - d));
+
+    }
+
+    //    BEST SOLUTION AND FASTEST
     public static String SuperCup(String s) {
+        int z = 0, a = 0, i = 0;
+        while (z < 7 & a < 6) {
+//            System.out.print("i=" + i + "//");
+            char c = s.charAt(i++);
+            z += "zamalek".charAt(z) == c ? 1 : 0;
+            a += "alahly".charAt(a) == c ? 1 : 0;
+        }
+        return z > 6 ? "win" : "loss";
+    }
+
+    public static String SuperCup4(String s) {
 
         class H {
 
@@ -88,9 +118,7 @@ public class CodeFighter_SuperCup {
         return new H("a.*h.*y").d > new H("z.*?a*k").d ? "win" : "loss";
     }
 
-//    Matcher a = Pattern.compile("a.*h.*y").matcher(s);
-//    Matcher b = Pattern.compile("z.*?a*k").matcher(s);
-    // SUBMITTED
+    // SUBMITTED && FASTEST
     public static String SuperCup3(String s) {
         Matcher a = Pattern.compile("a*l*a.*h*l.*y").matcher(s);
         Matcher b = Pattern.compile("z*a*m.*?a*l*e*k").matcher(s);
@@ -99,7 +127,7 @@ public class CodeFighter_SuperCup {
         return a.end() > b.end() ? "win" : "loss";
     }
 
-    // ORIGINAL FOR DEBUG
+    // ORIGINAL SUBMITTED FOR DEBUG
     public static String SuperCup2(String s) {
 
 //       String REGEX = "z\\ba\\bm\\ba\\bl\\be\\bk";
