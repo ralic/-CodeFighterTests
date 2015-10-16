@@ -16,6 +16,7 @@ public class CodeFighter_OrdoMeter {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        long b = System.currentTimeMillis();
 //        int ran = (int) (Math.random() * 999999999);
         int ran = 999999999;
 //        System.out.println("FaultyOdometer2 -in : " + ran + " -out : " + FaultyOdometer2(ran));

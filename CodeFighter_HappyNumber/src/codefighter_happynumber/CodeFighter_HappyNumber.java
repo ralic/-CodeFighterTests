@@ -6,6 +6,7 @@
 package codefighter_happynumber;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -16,14 +17,40 @@ public class CodeFighter_HappyNumber {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 //        // TODO code application logic here'
-        int[] test = HappyNumbers(10000);
+        long b = System.currentTimeMillis();
+        int[] test = HappyNumbers(100000);
         for (int i = 0; i < test.length; i++) {
-            System.out.println(test[i]);
+//            System.out.println(test[i]);
+            Thread.sleep((long) 0.00001);
         }
+        System.out.println("Time spent :" + (System.currentTimeMillis() - b));
+        long c = System.currentTimeMillis();
 
-//        System.out.println(HappyNumber(1903));
+        List test2 = HappyNumbers2(100000);
+        for (int i = 0; i < test2.size(); i++) {
+//            System.out.println(test2.get(i));
+            Thread.sleep((long) 0.00001);
+        }
+        System.out.println("Time spent :" + (System.currentTimeMillis() - c));
+    }
+
+    // Sortest solution -- faster.
+    public static List HappyNumbers2(int r) {
+        int j, t, i = 0;
+        List l = new ArrayList();
+        for (; i++ < r;) {
+            for (t = i; t > 6; t = j) {
+                for (j = 0; t > 0; t /= 10) {
+                    j += t % 10 * (t % 10);
+                }
+            }
+            if (t < 2) {
+                l.add(i);
+            }
+        }
+        return l;
     }
 
     public static int[] HappyNumbers(int Range) {
@@ -49,10 +76,10 @@ public class CodeFighter_HappyNumber {
                 return 0;
             }
             if (Range > 1) {
-                if (Range < 10 && (Range == 1 || Range == 7)) {
+                if (Range <= 18 && (Range == 1 || Range == 7 || Range == 10) || Range == 13) {
                     return 0;
                 }
-                if (Range < 10 && !(Range == 1 || Range == 7)) {
+                if (Range <= 18 && !(Range == 1 || Range == 7 || Range == 10 || Range == 13)) {
                     return -1;
                 }
                 int rem = Range;
@@ -70,6 +97,7 @@ public class CodeFighter_HappyNumber {
                 return HappyNumber(output);
             }
         } catch (StackOverflowError e) {
+            System.out.println("ERROR FOUND--");
             return -1;
         }
         return -1;
