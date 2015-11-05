@@ -10,11 +10,11 @@ public class UberPool {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int[] A = {-88, 26};
-        int[] B = {20, -14};
-        int[] C = {-16, -9};
-        int[] X = {14, 90};
-        int[] Y = {-98, -62};
+        int[] A = {0, 0};
+        int[] B = {3, 3};
+        int[] C = {3, 1};
+        int[] X = {5, 0};
+        int[] Y = {2, 2};
         System.out.println(uberPool(A, B, C, X, Y));
         // TODO code application logic here
         long speedX = System.currentTimeMillis();
@@ -24,38 +24,42 @@ public class UberPool {
     public static int uberPool(int[] A, int[] B, int[] C, int[] X, int[] Y) {
 
         int AC = Math.abs(A[0] - C[0]) + Math.abs(A[1] - C[1]);
-        int BC = Math.abs(B[0] - C[0]) + Math.abs(B[1] - C[1]);
+        int CB = Math.abs(C[0] - B[0]) + Math.abs(C[1] - B[1]);
         int CY = Math.abs(C[0] - Y[0]) + Math.abs(C[1] - Y[1]);
         int YB = Math.abs(Y[0] - B[0]) + Math.abs(Y[1] - B[1]);
         int CX = Math.abs(C[0] - X[0]) + Math.abs(C[1] - X[1]);
         int XB = Math.abs(X[0] - B[0]) + Math.abs(X[1] - B[1]);
-        int CB = Math.abs(C[0] - B[0]) + Math.abs(C[1] - B[1]);
         int CYB = CY + YB;
         int CXB = CX + XB;
-        if (CB < CYB && CB < CXB) {
+        int ACB = AC + CB;
+        int[] key = {ACB, CXB, CYB};
+        int min = key[0];
+        for (int i = 0; i < key.length; i++) {
+            if (key[i] < ACB) {
+                min = key[i];
+            }
+        }
+        if (min == ACB) {
             return -1;
         }
-        if (CYB != CXB) {
-            return CXB <= CYB ? 1 : 2;
+        if (min == CXB) {
+            return 1;
         }
+        if (min == CYB) {
+            return 2;
+        }
+//        System.out.println(AC + " " + CB);
+//        System.out.println(CY + " " + YB);
+//        System.out.println(CX + " " + XB);
+//        System.out.println(CXB + " " + CYB + " " + ACB + " " + CB);
+//        if (ACB > CYB && ACB > CXB) {
+//            return CXB <= CYB ? 1 : 2;
+//        } else if (CB < CYB && CB < CXB) {
+//            return -1;
+//        }
         return 00;
     }
 }
-/*
-Failed testcase:
-
-Input
-[[-88,26],[20,-14],[-16,-9],[14,90],[-98,-62]]
-
-Output
-1
-
-Expected Output
--1
- */
-
- //
-
 /*
 Uber has introduced UberPool to make sure there are fewer cars on the road,
 which means less traffic, faster travel times and cheaper rides.
